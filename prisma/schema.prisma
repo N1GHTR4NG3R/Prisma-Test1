@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model accounts {
+  ID                              Int         @id @default(autoincrement())
+  userName                        String      @db.VarChar(20)
+  password                        String      @db.VarChar(60)
+  email                           String      @db.VarChar(45)
+  characters                      Int?        @default(0)
+  characterLimit                  Int?        @default(1)
+  permissions                     Int?
+  IPs                             String?     @db.VarChar(60)
+  HWID                            String?     @db.VarChar(60)
+  createdAt                       DateTime?   @db.DateTime(0)
+  lastLogin                       DateTime?   @db.DateTime(0)
+  characters_accountsTocharacters characters?
+}
+
+model characters {
+  accountID         Int      @unique @default(autoincrement())
+  characterFname    String   @db.VarChar(20)
+  characterLname    String?  @db.VarChar(20)
+  characterClass    String?  @db.VarChar(9)
+  health            Int?     @default(200)
+  armour            Int?     @default(0)
+  hunger            Int?     @default(100)
+  thirst            Int?     @default(100)
+  bitcoin           Int?     @default(0)
+  cash              Int?     @default(200)
+  civGroup          String?  @default("None") @db.VarChar(45)
+  crimGroup         String?  @default("None") @db.VarChar(45)
+  govGroup          String?  @default("None") @db.VarChar(45)
+  vehicles          Int?     @default(0)
+  maxVehicles       Int?     @default(2)
+  characterStyle    Json?
+  characterClothing Json?
+  accounts          accounts @relation(fields: [accountID], references: [ID])
+
+  @@id([accountID, characterFname])
+  @@index([accountID], name: "accChar_idx")
+}

@@ -1,0 +1,26 @@
+{
+  "name": "prisma-test1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "db.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tricky-Ricky/Prisma-Test1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tricky-Ricky/Prisma-Test1/issues"
+  },
+  "homepage": "https://github.com/Tricky-Ricky/Prisma-Test1#readme",
+  "devDependencies": {
+    "prisma": "^2.18.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^2.18.0"
+  }
+}
